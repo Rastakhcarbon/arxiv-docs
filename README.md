@@ -18,6 +18,7 @@ To make a quick edit, use this is a 4 step process:
 
 2. Make a PR from your branch to develop, get that reviewed.
 
+
 3. Merge the PR to develop.
 
 4. Merge changes on develop to master.<br><br>

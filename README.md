@@ -1,4 +1,5 @@
 
+
 # info.arxiv.org pages
 
 Help, about, policy and other pages for arXiv.
@@ -17,6 +18,7 @@ To make a quick edit, use this is a 4 step process:
 1. Make your edit and commit to a new branch.
 
 2. Make a PR from your branch to develop, get that reviewed.
+
 
 3. Merge the PR to develop.
 

@@ -41,6 +41,18 @@ In his role as associate faculty director at arXiv, Yoav assists the Executive D
 <div class="grid-blocks" markdown="1">
 
 <div class="bio-block" markdown="1">
+![Image of Jeff Sank](../images/portrait-Jeff-Sank.jpg){.mkd-img-icon .mkd-img-center alt='Portrait of Jeff Sank' role="presentation"}
+
+## Jeff Sank {align="center"}
+
+**Engineering Director**
+{align="center"}
+
+
+As Engineering Director, Jeff leads the arXiv engineering teams building technology that supports arXiv's valuable Open Science mission. With over 20 years of experience in software development, digital strategy, and team building, Jeff has spent much of his career in the nonprofit sector, including a decade in digital publishing at NPR. Jeff is a graduate of The George Washington University.
+</div>
+
+<div class="bio-block" markdown="1">
 ![Image of Stephanie Orphan](../images/portrait-Stephanie-Orphan-warmtone.jpg){.mkd-img-icon .mkd-img-center alt='Portrait of Stephanie Orphan' role="presentation"}
 
 ## Stephanie Orphan {align="center"}
@@ -65,20 +77,6 @@ Stephanie’s role at arXiv spans administrative management, operational oversig
 - ![ORCID icon](https://info.orcid.org/wp-content/uploads/2019/11/orcid_16x16.png){class="sm-icon" role="presentation"}[0000-0002-8187-1144](https://orcid.org/0000-0002-8187-1144){target="_blank"}
 
 Steinn is Professor of Astrophysics at Penn State University. His research interests include astrophysics and related areas, ranging from cosmology, large scale dynamics and black holes, to the prospects for discovering non-terrestrial life. Steinn holds a Ph.D. in Theoretical Physics from the California Institute of Technology.
-</div>
-
-<div class="bio-block" markdown="1">
-![Image of Charles Frankston](../images/portrait-Charles-Frankston-warmtone.jpg){.mkd-img-icon .mkd-img-center alt='Portrait of Charles Frankston' role="presentation"}
-
-## Charles Frankston {align="center"}
-
-**Technical Director**
-{align="center"}
-
-- [@arxivcto](https://twitter.com/@arxivcto){target="_blank"}
-- ![ORCID icon](https://info.orcid.org/wp-content/uploads/2019/11/orcid_16x16.png){class="sm-icon" role="presentation"}[0000-0003-3878-5387](https://orcid.org/0000-0003-3878-5387){target="_blank"}
-
-Charles is focused on helping ready arXiv for it's next 30 years of stable support of open science and will shepherd arXiv's move to the cloud. He brings his wealth of expertise in a wide range of platforms and languages, systems architecture, and data privacy. Charles holds a B.S. in Computer Science and Engineering from the Massachusetts Institute of Technology.
 </div>
 
 </div>

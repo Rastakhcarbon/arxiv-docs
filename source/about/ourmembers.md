@@ -37,7 +37,7 @@ Champion members with arXiv are institutions whose researchers are top users of 
 1. Purdue University (USA) _BTAA_
 1. Penn State University (USA) _BTAA_
 1. University College London (UK) _Jisc_
-1. University of California, Berkleley (USA) _CDL_
+1. University of California, Berkeley (USA) _CDL_
 1. University of Chicago (USA) _BTAA_
 1. University of Illinois - Urbana Champain (USA) _BTAA_
 1. University of Maryland, College Park (USA) _BTAA_
@@ -165,7 +165,7 @@ Frequent Submitters are members whose researchers frequently submit scholarly ar
 1. Universiteit Gent (Belgium)
 1. Universitetet Oslo (Norway)
 1. University at Buffalo (USA)
-1. University of Adelaide (Australia)
+1. Adelaide University (Australia)
 1. University of Alberta (Canada)
 1. University of Bath (UK) _Jisc_
 1. University of Birmingham (UK) _Jisc_

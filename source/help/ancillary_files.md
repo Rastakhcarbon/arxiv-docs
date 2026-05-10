@@ -24,7 +24,7 @@ submitted. Please take note of the following submission tips:
 - Full text placed in the ancillary directory will not be indexed in searches.
 - PDF files with embedded JavaScript will cause your submission to fail (embedded JavaScript is a security risk to arXiv’s systems).
     - Remove or disable JavaScript when building your PDF or generate PDFs using standard tools such as Adobe Distiller.
-    - Submit all movies and animated GIFS as separate (non-JavaScript) ancillary files. 
+    - Submit all movies and animated GIFs as separate (non-JavaScript) ancillary files. 
 
 
 Submission of ancillary files
@@ -54,7 +54,7 @@ include additional links below the usual article download links. See,
 for example, [arXiv:0811.2625v2](https://arxiv.org/abs/0811.2625v2). There is also a
 separate page that lists all ancillary files with greater detail than
 there is room for on the abstract page. See, for example, [ancillary
-files for arXiv:0905.2326v1](ancillary_files.md). In both cases there
+files for arXiv:0905.2326v2](https://arxiv.org/abs/0905.2326v2/anc). In both cases there
 are links to each file for individual download. Ancillary files are also
 included in the complete article source that may be downloaded from the
-[other formats](https://arxiv.org/format/0905.2326v1) page.
+[other formats](https://arxiv.org/format/0905.2326v2) page.

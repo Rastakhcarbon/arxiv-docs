@@ -9,7 +9,6 @@
 - Brian Caruso, Lead Developer
 - Jim R-B Entwood, Head of Content & User Support
 - David Fielding, Senior Developer
-- Charles Frankston, Technical Director
 - Deyan Ginev, Software Engineer
 - Mike Greco, DevOps Engineer
 - Alison Hofer, Documentation Specialist
@@ -22,8 +21,10 @@
 - Norbert Preining, Principal Software Engineer
 - Erin Aster, Developer
 - Rebecca Rich Goldweber, Lead Production Editor
+- Jeff Sank, Engineering Director
 - Jessica Schriver, Production Editor
 - Steinn Sigurdsson, Scientific Director
+- Valpuri Sovero, User Support & Editorial Assistant
 - Naoyuki Tai, Senior Software Engineer
 - Jake Weiskoff, Project Manager
 - Jonathan Young, Lead ML Engineer

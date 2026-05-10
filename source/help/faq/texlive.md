@@ -1,15 +1,221 @@
-# Notes about arXiv's TeXLive Version
+# TeX Live at arXiv
 
-## Update to TeX Live 2025
+*   [Supported TeX Live versions](#supported-tex-live-versions)
+*   [Supported TeX processors](#supported-processors)
+*   [The use of `xelatex`](#xelatex-use)
+    * [Font loading](#xelatex-font-loading)
+    * [Uploading fonts](#xelatex-uploading)
+*   [Notes concerning TeX Live 2025](#changes-2025)
+    * [Issues with the `array` package](#changes-2025-array)
+    * [Usage of `cleveref` package](#changes-2025-cleveref)
+    * [Loading of packages outside the toplevel](#changes-2025-outside-toplevel)
+    * [`minted` and other "frozen cache" packages](#changes-2025-minted)
+    * [Loading order of `hyperref` and `hyperxmp`](#changes-2025-hyperref)
+    * [Other packages and classes that are known to have problems](#changes-2025-other)
+*   [Notes concerning TeX Live 2023](#changes-2023)
+*   [Update to TeX Live 2020](#changes-2020)
+*   [Update to TeX Live 2016](#changes-2016)
+*   [Update to TeX Live 2011](#changes-2011)
 
-*Update October 2025:* The submission system has been updated to support bib to bbl conversion,
-as well as support for `xelatex` and `pdftex` compilers.
 
-*Update September 2025:* arXiv has updated its submission system to use a plain instance of [TeXLive 2025](http://tug.org/texlive) for [Submission v1.5](../submit_tex.md#newtex). This means if your submission uses any TeX packages not included in the TeX Live 2025 release, you will need to include their style files with your submission.
+<span id="supported-tex-live-versions"></span>
+## Supported TeX Live versions
 
-TeX Live 2025 is changing daily, arXiv uses the state of 2025-08-03.
+arXiv currently supports TeX Live 2023 and TeX Live 2025, with 2025 being the default.
+Submissions can select either of the two.
 
-## Update to TeX Live 2023
+State of TeX Live in use:
+
+*   TeX Live 2023: state from 2023-05-21
+*   TeX Live 2025: state from 2025-08-03
+
+
+<span id="supported-processors"></span>
+## Supported TeX processors
+
+We are currently only supporting the following types of TeX submissions:
+
+*   plain TeX submissions named `tex` during the submission: those are converted using `etex` followed by `dvips` and `ps2pdf`;
+*   plain TeX submissions named `pdftex` during the submission: those are converted using `pdfetex`.
+*   LaTeX submissions in DVI mode named `latex` during the submission: those are converted using `latex` followed by `dvips` and `ps2pdf`;
+*   LaTeX submissions in PDF mode named `pdflatex` during the submission: those are converted using `pdflatex`.
+*   LaTeX submissions in PDF mode named `xelatex` during the submission: those are converted using `xelatex`.
+
+During the submission process, you will be asked which of the processors you want to use for your
+submission.
+
+
+### Selecting the correct processor
+
+Selecting the correct processor is generally an easy task, because we will offer you the hopefully correct
+one automatically during submission. If you want to decide by yourself, here is a quick guide:
+
+*   if it is plain TeX, select `tex` or `pdftex`;
+*   if it is a LaTeX document that includes `eps` files, select `latex`;
+*   if it is a LaTeX document that includes `jpg`, `png` (and some more) files, select `pdflatex`;
+*   if it is a LaTeX document that includes both `eps` and `jpg`/`png`/`pdf` files, select `xelatex`;
+*   if you don't know, select `pdflatex`.
+
+Note that at the moment, the processor type is fixed for all parts of a multi-file submission.
+
+
+<span id="xelatex-use"></span>
+## Notes concerning the use of `xelatex`
+
+XeLaTeX ([TUG page](https://tug.org/xetex/), [Wikipedia entry](https://en.wikipedia.org/wiki/XeTeX)) has been
+introduced as possible processor option in November 2025. The main changes compared to `pdflatex` are:
+
+* Unicode support
+* Support for TrueType and OpenType fonts
+
+<span id="xelatex-font-loading"></span>
+### Font loading
+
+Note that font lookups in XeLaTeX using the `fontspec` package can be done in two ways: Using the **Font Name**
+and using the **File Name**. For lookups using the font name, `fontconfig` support is necessary, and fonts need
+to be registered with `fontconfig`. At arXiv, practically no fonts are registered with `fontconfig` (only a small
+set of system fonts).
+
+Thus, to use any of the long list of TrueType or OpenType fonts shipped by TeX Live, one needs to use the file name
+lookup method.
+
+See [Truetype and Opentype fonts available at arXiv's TeX Live 2025](font-info-tl2025.md) for the
+complete list of fonts and their respective file names provided by arXiv's TeX Live.
+
+Example for the `TeX Gyre Pagella` font:
+
+Correct: Lookup via filename
+
+    \setmainfont{texgyrepagella-regular.otf}[...]
+
+Incorrect/will not work: Lookup via font name
+
+    \setmainfont{TeX Gyre Pagella}[...]
+
+For more details see the [documentation of the fontspec](https://mirrors.ctan.org/macros/unicodetex/latex/fontspec/fontspec.pdf) package.
+
+<span id="xelatex-uploading"></span>
+### Uploading fonts
+
+Submissions can include fonts in the upload and load them with the relative path
+to the font file, e.g.,
+
+```
+\setmainfont{fonts/my-private-font.otf}[...]
+```
+
+**WARNING** *Submitters must make sure that the license terms under which they are
+using the fonts permit uploading and sharing.*
+
+Uploaded fonts will be part of the submission package and thus distributed. During
+the submission, authors need to select a correct license that applies to all of
+their submitted material, **including** uploaded fonts.
+
+We thus strongly suggest to use only fonts that are available in the TeX Live
+distributions, see [this document](font-info-tl2025.md) for a complete list of font names and file names.
+
+<span id="changes-2025"></span>
+## Notes concerning TeX Live 2025
+
+We list the most common errors we have seen in the set of current submissions.
+Further information can be found at the [Overleaf announcement that TeX Live 2025
+is now available](https://www.overleaf.com/blog/tex-live-2025-is-now-available).
+
+<span id="changes-2025-array"></span>
+### Issues with the `array` package
+
+Under various circumstances, in particular when using a `revtex` documentclass together with the `array`
+package, compilation issue might arise.
+
+We suggest either selecting TeX Live 2023, or requesting an older version or the array package using
+
+```
+\usepackage{array}[=2016-10-06]
+```
+
+<span id="changes-2025-cleveref"></span>
+### Usage of `cleveref` package
+
+The `cleveref` package has not been updated to work with TeX Live 2025. When using it in a submission
+with TeX Live 2025, references will all include the same name (i.e., all `\cref{...}` will have the
+same "name" like "Proposition").
+
+Either select TeX Live 2023 for your submission, or add, for each definition of a theorem-like environment
+you use, the necessary `\crefalias`.
+
+Example: If there is
+
+```
+\newtheorem{theorem}{Theorem}[section]
+```
+
+then a line as follows needs to be added:
+
+```
+\AddToHook{env/theorem/begin}{\crefalias{section}{theorem}}
+```
+
+<span id="changes-2025-outside-toplevel"></span>
+### Loading of packages outside the toplevel
+
+Loading packages using `\usepackage` or `\RequirePackage` will now fail when happening in a group `{...}`.
+This manifests itself most prominently in the use of `\singlespace`, `\doublespace` etc from the `setspace`
+package. These are environments (!) and need to be started/ended with `\begin{...} ... \end{...}`.
+
+If e.g. `\doublespace` is used as is, it only starts the environment but does not close it. Any `\usepackage`
+further down will throw an error.
+
+Solution: Either use proper environments with `\begin{...}` and `\end{...}`, or use the -ing commands
+like `\doublespacing` instead.
+
+<span id="changes-2025-minted"></span>
+### `minted` and other "frozen cache" packages
+
+Caches generated by `minted` or any other package in the same vein require the same
+TeX Live version during generation of the cache and the one used at arXiv.
+
+Note in particular that `minted` got a completely new version in TeX Live 2025, and
+the previous behavior and arguments to the `\usepackage[...]{minted}` call need revision.
+Most recipes given on the internet are still referring to minted **version 2** or below, while
+TeX Live 2025 uses **minted version 3**.
+
+As a simple recipe:
+
+* Use `\usepackage{minted}` in your document, and run `(pdf)latex` once with `-shell-escape`. This should create a directory `_minted`.
+* Include the `_minted` directory in your upload. No further changes are necessary. In particular, using options like `frozencache` etc are now unnecessary.
+
+You can check success by running `(pdf)latex -no-shell-escape` and check whether errors related to `minted` occur.
+
+<span id="changes-2025-hyperref"></span>
+### Loading order of `hyperref` and `hyperxmp`
+
+The package `hyperxmp` introduced a requirement that `hyperref` is begin loaded **before** `hyperxmp`.
+Since many times, the loading of `hyperref` also did set various parameters, this has to be changed.
+
+Before -- this does not work with TeX Live 2025:
+
+```
+\usepackage{hyperxmp}
+\usepackage[pdfauthor={...},...]{hyperref}
+```
+
+needs to be converted to
+
+```
+\usepackage{hyperref}
+\usepackage{hyperxmp}
+\hypersetup{pdfauthor={...},...}
+```
+
+<span id="changes-2025-other"></span>
+### Other packages and classes that are known to have problems
+
+*  `aastex` version 6 and 7: similar to the array problem mentioned above, but the fix does not work.
+*  `revtex`: problems with array package mentioned above. Can usually be fixed as mentioned above.
+
+
+<span id="changes-2023"></span>
+## Notes concerning TeX Live 2023
 
 *Update 2023-05-22:* arXiv  has updated its submission system to use a plain instance of [TeXLive 2023](http://tug.org/texlive) for [Submission v1.5](../submit_tex.md#newtex). This means if your submission uses any TeX packages not included in the TeX Live 2023 release, you will need to include their style files with your submission.
 
@@ -29,7 +235,7 @@ of large disciplines.
 
 We do not anticipate significant issues for articles developed under TeX 
 Live 2023. If you are submitting articles developed under older TeX Live
-releases you may experinece some of the issues below. We ran some tests 
+releases you may experience some of the issues below. We ran some tests 
 against TeX Live 2020 articles to get a sense for common problems 
 with older TeX Live releases.
 
@@ -40,7 +246,7 @@ under TL2020 using the new TL2023 release.
 The primary objective is to identify any potential issues that our 
 existing authors may encounter with the new TeX Live 2023 release.
 
-In general terms, 95% of TL2020 articles compile successfuly under TL2023. 
+In general terms, 95% of TL2020 articles compile successfully under TL2023. 
 Nearly 35% of recompiled article PDFs are identical or vary by
 a single page (often due to date). Nearly 60% of older TL2020 article source 
 resulted in changes to multiple page of the resulting TL2023 PDF. 
@@ -183,15 +389,15 @@ extremely cautious when it comes to updates.
 
 TeX Live Packages: Updating commonly used packages in the main TL2020
 distribution is time consuming since we need to guarantee that existing
-papers are not adversly impacted by such a change. New packages: Adding
+papers are not adversely impacted by such a change. New packages: Adding
 new packages not included in TeX Live is possible by adding the package
 to our local tree. Updating existing packages in the distribution or
-local tree is difficult. Options for updating existing packages. One
+local tree is difficult. Options for updating existing packages: One
 option is to include the modified package with your submission. Another
 option, for packages expected to be used by many authors, is to provide
 a modified version (that does not conflict with existing packages) that
 may be added to our local tree. If you see the need to include a large
-package hierarchy with you submission please contact us before including
+package hierarchy with your submission please contact us before including
 significant portions of a TeX Live tree.
 
 Our goal is to update our TeX Live distribution every few years. Since
@@ -210,7 +416,8 @@ TL2016-based tree.
 under the previous release we strongly encourage you to carefully
 examine your final PDF.*
 
-### Update to TeX Live 2020 [2020-10-01]
+<span id="changes-2020"></span>
+## Update to TeX Live 2020 [2020-10-01]
 
 *Update 2020-10-01: arXiv updated to TeXLive 2020* arXiv is now running
 under [TeXLive 2020](http://tug.org/texlive), with a new, updated and
@@ -255,7 +462,8 @@ cases you will want to add customized packages to your submission.
 Widely used packages may be added to our local tree for the convenience
 of large disciplines.
 
-### Update to TeX Live 2016 [2017-02-09]
+<span id="changes-2016"></span>
+## Update to TeX Live 2016 [2017-02-09]
 
 TeX Live changes that may impact some arXiv users:
 
@@ -351,7 +559,9 @@ An incomplete list of common symptoms, errors, and fixes follows:
     fix: replace document to reprocess with latest versions of these
     packages.
 
-### Update to TeX Live 2011 [2011-12-06]
+<span id="changes-2011"></span>
+## Update to TeX Live 2011 [2011-12-06]
+
 *Update 2011-12-06: arXiv switched to
 [texlive 2011](http://tug.org/texlive/) with a new, updated and enhanced
 tree of local addons. Most of the advice below still applies.*
@@ -423,3 +633,4 @@ An incomplete list of common symptoms, errors, and fixes
         dvips: ! premature end of file in binary section
     
     fix: figure must be corrected
+
